@@ -1,13 +1,12 @@
 package co.edu.uniquindio.biblioteca.entidades;
 
 import lombok.*;
-import net.bytebuddy.dynamic.loading.ClassReloadingStrategy;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Objects;
+import java.util.List;
 
 @Entity
 @Getter // Genera los getters de todos los atributos sin necesidad de crearlos gracias Lombok
@@ -27,4 +26,10 @@ public class Prestamo implements Serializable {
 
     @Column(nullable = false)
     private LocalDate fechaDevolucion;
+
+    @ManyToOne
+    private Cliente cliente;
+
+    @ManyToMany
+    private List<Libro>libros;
 }
